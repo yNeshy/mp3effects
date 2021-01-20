@@ -156,10 +156,11 @@ def upload_file_to_S3(file_name, bucket, object_name=None):
     s3_client = boto3.client('s3')
     try:
         response = s3_client.upload_file(file_name, bucket, object_name)
+        return response
     except ClientError as e:
         print("S3 error occured "+ e)
-        return False
-    return True
+        return None
+    
 
 
 if __name__ == '__main__':
